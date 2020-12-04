@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     if(!req.body.name || !req.body.description){
-        res.status(400).json({ errorMessage: 'missing required field'})
+        res.status(400).json({ errorMessage: 'missing required information'})
     }
     Project.insert(req.body)
         .then(project => {
@@ -53,11 +53,11 @@ router.put('/:id', (req, res) => {
 
     Project.update(id, changes)
         .then(project => {
-            if(req.body.name && req.body.description){
+            if(req.body.name && req.body.description && req.body.completed){
                 res.status(200).json(project)
             }
             else{
-                res.status(400).json({ errorMessage: 'missing required field'})
+                res.status(400).json({ errorMessage: 'missing required information'})
             }
         })
         .catch(err => {
@@ -71,7 +71,7 @@ router.delete('/:id', (req, res) => {
     Project.remove(id)
     .then(project => {
         if(project){
-            res.status(200).json({ message: "project deleted"})
+            res.status(200).json({ message: "deleted"})
         }
         else{
             res.status(404).json({ message: 'No id is found'})
@@ -79,7 +79,7 @@ router.delete('/:id', (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({ message: 'project could not be deleted'})
+        res.status(500).json({ message: 'could not be deleted'})
     })
 })
 
@@ -91,7 +91,7 @@ router.get('/:id/actions', (req, res) => {
                 res.status(200).json(projectId)
             }
             else{
-                res.status(404).json({ errorMessage: 'could not find the action' })
+                res.status(404).json({ errorMessage: 'could not find' })
             }
         })
         .catch(err => {
