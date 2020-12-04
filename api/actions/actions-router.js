@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 const Action = require('./actions-model')
@@ -26,7 +27,7 @@ router.get('/:id', (req, res) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({ error: err.message })
+            res.status(404).json({ error: err.message })
         })
 })
 
@@ -60,7 +61,7 @@ router.put('/:id', (req, res) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({ error: err.message })
+            res.status(400).json({ error: err.message })
         })
 })
 
@@ -77,7 +78,7 @@ router.delete('/:id', (req, res) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({ message: 'action could not be deleted'})
+            res.status(404).json({ message: 'action could not be deleted'})
         })
 })
 
