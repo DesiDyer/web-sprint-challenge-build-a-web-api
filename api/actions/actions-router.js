@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
                 res.status(200).json(action)
             }
             else{
-                res.status(400).json({ errorMessage: 'missing required field'} )
+                res.status(400).json({ errorMessage: 'missing required information'} )
             }
         })
         .catch(err => {
